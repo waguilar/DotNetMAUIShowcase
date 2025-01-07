@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<view:BaseContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:view="clr-namespace:Pokedex.View"
+                      xmlns:viewModel="clr-namespace:Pokedex.ViewModel"
+                      xmlns:model="using:Pokedex.Model"
+                      x:DataType="viewModel:PokemonListViewModel"
+                      x:Class="Pokedex.View.PokemonList"
+                      Title="PokemonList">
+
+    <CollectionView ItemsSource="{Binding Pokemons}" 
+                    SelectionMode="Single">
+
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="model:Pokemon">
+                <Label Text="{Binding Name}" />
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+
+    </CollectionView>
+
+</view:BaseContentPage>
