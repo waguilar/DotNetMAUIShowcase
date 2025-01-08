@@ -4,24 +4,85 @@
                       xmlns:view="clr-namespace:Pokedex.View"
                       xmlns:viewModel="clr-namespace:Pokedex.ViewModel"
                       xmlns:model="clr-namespace:Pokedex.Service.Models;assembly=Pokedex.Service"
+                      xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
                       x:DataType="viewModel:PokemonListViewModel"
                       x:Class="Pokedex.View.PokemonList"
                       Title="PokemonList">
 
-    <CollectionView ItemsSource="{Binding PokemonList}"
-                    SelectedItem="{Binding SelectedItem}"
-                    SelectionMode="Single">
+    <view:BaseContentPage.Resources>
+        <Style TargetType="Border">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal"/>
+                        <VisualState x:Name="Selected"/>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </view:BaseContentPage.Resources>
 
-        <CollectionView.Header>
-            <Image Source="{Binding Pokemon.PokemonInfo.Sprite}"></Image>
-        </CollectionView.Header>
+    <Grid RowDefinitions="auto,*"
+          RowSpacing="10">
 
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="model:PokedexItemModel">
-                <Label Text="{Binding FormattedName}" />
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
+        <Border Grid.Row="0"
+                WidthRequest="200"
+                HeightRequest="200"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                StrokeShape="RoundRectangle 40"
+                Background="{DynamicResource SecondaryBrush}">
+            <ffimageloading:CachedImageView Source="{Binding Pokemon.PokemonInfo.Sprite}"
+                                            StrokeThickness="0"
+                                            FadeAnimationEnabled="False"/>
+        </Border>
 
-    </CollectionView>
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding PokemonList}"
+                        SelectedItem="{Binding SelectedItem}"
+                        SelectionMode="Single">
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"
+                                   ItemSpacing="4"/>
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:PokedexItemModel">
+                    <Border x:Name="myBorder"
+                            Padding="8"
+                            Margin="4"
+                            Stroke="{DynamicResource PrimaryBrush}"
+                            StrokeShape="RoundRectangle 12"
+                            StrokeThickness="2">
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroupList>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter TargetName="myBorder" Property="Border.Background" Value="Transparent" />
+                                            <Setter TargetName="myBorder" Property="Border.BackgroundColor" Value="Transparent" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter TargetName="myBorder" Property="Border.Background" Value="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray600}}" />
+                                            <Setter TargetName="myBorder" Property="Border.BackgroundColor" Value="Transparent" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateGroupList>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Label Text="{Binding FormattedName}" />
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+    </Grid>
+
+
 
 </view:BaseContentPage>

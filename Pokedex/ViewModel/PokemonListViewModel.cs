@@ -20,6 +20,16 @@ public partial class PokemonListViewModel : BaseViewModel
         this.pokemonService = pokemonService;
     }
 
+
+    partial void OnSelectedItemChanging(PokedexItemModel? oldValue, PokedexItemModel newValue)
+    {
+        if (oldValue is not null)
+        {
+            oldValue.Selected = false;
+        }
+        newValue.Selected = true;
+    }
+
     partial void OnSelectedItemChanged(PokedexItemModel value)
     {
         if (SelectedItem != null) LoadPokemonAsync(value.Id);

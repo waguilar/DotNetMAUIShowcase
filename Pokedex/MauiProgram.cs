@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using FFImageLoading.Maui;
+using Microsoft.Extensions.Logging;
 using Pokedex.Service.Apis;
 using Pokedex.Service.Constants;
 using Pokedex.Service.Interfaces;
@@ -15,6 +16,7 @@ namespace Pokedex
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseFFImageLoading()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
