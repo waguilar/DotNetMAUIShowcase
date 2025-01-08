@@ -1,5 +1,8 @@
-﻿namespace Pokedex.ViewModel;
-public abstract class BaseViewModel
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+
+namespace Pokedex.ViewModel;
+
+public abstract class BaseViewModel : ObservableObject
 {
     protected INavigation Navigation { get; private set; }
     protected IConnectivity Connectivity { get; private set; }

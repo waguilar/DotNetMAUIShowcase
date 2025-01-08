@@ -3,17 +3,22 @@
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                       xmlns:view="clr-namespace:Pokedex.View"
                       xmlns:viewModel="clr-namespace:Pokedex.ViewModel"
-                      xmlns:model="using:Pokedex.Model"
+                      xmlns:model="clr-namespace:Pokedex.Service.Models;assembly=Pokedex.Service"
                       x:DataType="viewModel:PokemonListViewModel"
                       x:Class="Pokedex.View.PokemonList"
                       Title="PokemonList">
 
-    <CollectionView ItemsSource="{Binding Pokemons}" 
+    <CollectionView ItemsSource="{Binding PokemonList}"
+                    SelectedItem="{Binding SelectedItem}"
                     SelectionMode="Single">
 
+        <CollectionView.Header>
+            <Image Source="{Binding Pokemon.PokemonInfo.Sprite}"></Image>
+        </CollectionView.Header>
+
         <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="model:Pokemon">
-                <Label Text="{Binding Name}" />
+            <DataTemplate x:DataType="model:PokedexItemModel">
+                <Label Text="{Binding FormattedName}" />
             </DataTemplate>
         </CollectionView.ItemTemplate>
 
