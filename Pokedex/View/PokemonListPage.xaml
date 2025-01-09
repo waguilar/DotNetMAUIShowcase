@@ -5,22 +5,10 @@
                       xmlns:viewModel="clr-namespace:Pokedex.ViewModel"
                       xmlns:model="clr-namespace:Pokedex.Service.Models;assembly=Pokedex.Service"
                       xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
+                      xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
                       x:DataType="viewModel:PokemonListViewModel"
                       x:Class="Pokedex.View.PokemonListPage"
                       Title="PokemonList">
-
-    <view:BaseContentPage.Resources>
-        <Style TargetType="Border">
-            <Setter Property="VisualStateManager.VisualStateGroups">
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal"/>
-                        <VisualState x:Name="Selected"/>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </Setter>
-        </Style>
-    </view:BaseContentPage.Resources>
 
     <Grid RowDefinitions="auto,*"
           RowSpacing="10">
@@ -32,6 +20,14 @@
                 VerticalOptions="Center"
                 StrokeShape="RoundRectangle 40"
                 Background="{DynamicResource SecondaryBrush}">
+
+            <Border.Behaviors>
+                <toolkit:TouchBehavior DefaultAnimationDuration="75"
+                                       DefaultAnimationEasing="{x:Static Easing.CubicInOut}"
+                                       PressedOpacity="0.9"
+                                       PressedScale="0.98" />
+            </Border.Behaviors>
+
             <ffimageloading:CachedImageView Source="{Binding Pokemon.PokemonInfo.Sprite}"
                                             StrokeThickness="0"
                                             FadeAnimationEnabled="False"/>
@@ -55,6 +51,13 @@
                             Stroke="{DynamicResource PrimaryBrush}"
                             StrokeShape="RoundRectangle 12"
                             StrokeThickness="2">
+
+                        <Border.Behaviors>
+                            <toolkit:TouchBehavior DefaultAnimationDuration="75"
+                                                   DefaultAnimationEasing="{x:Static Easing.CubicInOut}"
+                                                   PressedOpacity="0.9"
+                                                   PressedScale="0.98" />
+                        </Border.Behaviors>
 
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroupList>
