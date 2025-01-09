@@ -6,7 +6,7 @@
                       xmlns:model="clr-namespace:Pokedex.Service.Models;assembly=Pokedex.Service"
                       xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
                       x:DataType="viewModel:PokemonListViewModel"
-                      x:Class="Pokedex.View.PokemonList"
+                      x:Class="Pokedex.View.PokemonListPage"
                       Title="PokemonList">
 
     <view:BaseContentPage.Resources>

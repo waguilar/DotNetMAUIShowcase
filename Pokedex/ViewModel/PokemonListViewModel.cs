@@ -7,7 +7,7 @@ namespace Pokedex.ViewModel;
 
 public partial class PokemonListViewModel : BaseViewModel
 {
-    private readonly PokemonService pokemonService;
+    private readonly PokemonService _pokemonService;
 
     private int offset = 0;
     [ObservableProperty] private PokemonModel pokemon;
@@ -17,7 +17,7 @@ public partial class PokemonListViewModel : BaseViewModel
     public PokemonListViewModel(IConnectivity connectivity,
         PokemonService pokemonService) : base(connectivity)
     {
-        this.pokemonService = pokemonService;
+        this._pokemonService = pokemonService;
     }
 
 
@@ -46,7 +46,7 @@ public partial class PokemonListViewModel : BaseViewModel
 
     private async Task LoadPokemonsAsync(int offset = 0)
     {
-        var result = await pokemonService.GetPokemonList(offset, 20, CancellationToken.None);
+        var result = await _pokemonService.GetPokemonList(offset, 20, CancellationToken.None);
 
         if (PokemonList == null) PokemonList = new ObservableCollection<PokedexItemModel>();
 
@@ -55,6 +55,6 @@ public partial class PokemonListViewModel : BaseViewModel
 
     private async Task LoadPokemonAsync(int id)
     {
-        Pokemon = await pokemonService.GetPokemonById(id, CancellationToken.None);
+        Pokemon = await _pokemonService.GetPokemonById(id, CancellationToken.None);
     }
 }

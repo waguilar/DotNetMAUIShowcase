@@ -8,8 +8,11 @@
     Title="Pokedex">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate view:PokemonList}"
-        Route="MainPage" />
+        Title="Pokedex"
+        ContentTemplate="{DataTemplate view:PokemonListPage}"/>
+
+    <ShellContent
+        Title="Configuration"
+        ContentTemplate="{DataTemplate view:ConfigurationPage}"/>
 
 </Shell>

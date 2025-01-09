@@ -2,10 +2,10 @@ using Pokedex.ViewModel;
 
 namespace Pokedex.View;
 
-public partial class PokemonList
+public partial class PokemonListPage
 {
     PokemonListViewModel vm => BindingContext as PokemonListViewModel;
-    public PokemonList(PokemonListViewModel viewModel)
+    public PokemonListPage(PokemonListViewModel viewModel)
     {
         InitializeComponent();
 

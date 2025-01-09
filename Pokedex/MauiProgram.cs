@@ -6,6 +6,7 @@ using Pokedex.Service.Interfaces;
 using Pokedex.Service.Services;
 using Pokedex.View;
 using Pokedex.ViewModel;
+using Serilog;
 
 namespace Pokedex
 {
@@ -23,6 +24,8 @@ namespace Pokedex
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            builder.Logging.AddSerilog(dispose: true);
+
             builder.Services.AddSingleton(Connectivity.Current);
 
             // Services - Api Client
@@ -35,9 +38,11 @@ namespace Pokedex
 
             // Register ViewModels
             builder.Services.AddTransient<PokemonListViewModel>();
+            builder.Services.AddTransient<ConfigurationViewModel>();
 
             // Register Views
-            builder.Services.AddTransient<PokemonList>();
+            builder.Services.AddTransient<PokemonListPage>();
+            builder.Services.AddTransient<ConfigurationPage>();
 
 #if DEBUG
             builder.Logging.AddDebug();
