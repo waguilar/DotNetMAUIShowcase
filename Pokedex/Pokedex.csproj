@@ -73,6 +73,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="View\PokemonDetailPage.xaml.cs">
+	    <DependentUpon>PokemonDetailPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="View\PokemonListPage.xaml.cs">
 	    <DependentUpon>PokemonListPage.xaml</DependentUpon>
 	  </Compile>
@@ -97,6 +100,9 @@
 	  <MauiXaml Update="View\ConfigurationPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="View\PokemonDetailPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\PokemonListPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -106,6 +112,10 @@
 	  <None Update="View\PokemonList.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Service\" />
 	</ItemGroup>
 
 </Project>

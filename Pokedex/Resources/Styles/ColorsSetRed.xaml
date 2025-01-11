@@ -6,7 +6,7 @@
     <Color x:Key="Primary">#FF0000</Color>
     <Color x:Key="PrimaryDark">#B20000</Color>
     <Color x:Key="PrimaryDarkText">#660000</Color>
-    <Color x:Key="Secondary">#FF6666</Color>
+    <Color x:Key="Secondary">#FFBFBF</Color>
     <Color x:Key="SecondaryDarkText">#CC3333</Color>
     <Color x:Key="Tertiary">#990000</Color>
 

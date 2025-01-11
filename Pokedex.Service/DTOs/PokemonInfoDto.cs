@@ -109,15 +109,6 @@ public class Move
     public List<VersionGroupDetail> VersionGroupDetails { get; set; }
 }
 
-public class NamedApiResource
-{
-    [JsonPropertyName("name")]
-    public string Name { get; set; }
-
-    [JsonPropertyName("url")]
-    public string Url { get; set; }
-}
-
 public class VersionDetail
 {
     [JsonPropertyName("rarity")]

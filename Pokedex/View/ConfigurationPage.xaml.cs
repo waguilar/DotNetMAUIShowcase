@@ -5,11 +5,11 @@ namespace Pokedex.View;
 public partial class ConfigurationPage
 {
     ConfigurationViewModel vm => BindingContext as ConfigurationViewModel;
-    public ConfigurationPage(ConfigurationViewModel viewModel)
+    public ConfigurationPage()
 	{
 		InitializeComponent();
 
-        BindingContext = viewModel;
+        BindingContext = DependencyService.Resolve<ConfigurationViewModel>(DependencyFetchTarget.NewInstance);
         vm.SetNavigation(Navigation);
     }
 

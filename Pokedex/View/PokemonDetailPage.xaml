@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<view:BaseContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:view="clr-namespace:Pokedex.View"
+                      xmlns:maui="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
+                      xmlns:viewModel="clr-namespace:Pokedex.ViewModel"
+                      x:Class="Pokedex.View.PokemonDetailPage"
+                      x:DataType="viewModel:PokemonDetailViewModel"
+                      Title="Pokemon Detail">
+
+    <Border Margin="8"
+            HeightRequest="300"
+            VerticalOptions="Start"
+            StrokeShape="RoundRectangle 20"
+            Stroke="{DynamicResource PrimaryBrush}"
+            StrokeThickness="3">
+
+        <Grid RowDefinitions="2*,*">
+
+            <Grid.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="FontSize" Value="Medium"/>
+                </Style>
+            </Grid.Resources>
+
+            <Grid Grid.Row="0"
+                  ColumnDefinitions="*,*">
+
+                <maui:CachedImageView Grid.Column="0"
+                                      WidthRequest="175"
+                                      HeightRequest="175"
+                                      HorizontalOptions="Center"
+                                      VerticalOptions="Center"
+                                      Source="{Binding Pokemon.PokemonInfo.Sprite}"
+                                      StrokeThickness="0"
+                                      FadeAnimationEnabled="False"/>
+
+                <Grid Grid.Column="1"
+                      VerticalOptions="Center"
+                      RowDefinitions="auto, auto, auto, auto">
+
+                    <Grid Grid.Row="0"
+                          ColumnDefinitions="auto,auto"
+                          ColumnSpacing="8">
+                        <Label Grid.Column="0"
+                               Text="{Binding Pokemon.PokemonInfo.Id, StringFormat='No. {0:000}'}"/>
+
+                        <Label Grid.Column="1"
+                               Text="{Binding Pokemon.PokemonInfo.FormattedName}"/>
+                    </Grid>
+
+                    <Grid Grid.Row="1"
+                          ColumnDefinitions="auto"
+                          ColumnSpacing="8">
+                        <Label Grid.Column="0"
+                               Text="{Binding Pokemon.PokemonSpecies.Genera}"/>
+                    </Grid>
+
+                    <Grid Grid.Row="2"
+                          ColumnDefinitions="auto,auto"
+                          ColumnSpacing="8">
+                        <Label Grid.Column="0"
+                               Text="HT."/>
+
+                        <Label Grid.Column="1"
+                               Text="{Binding Pokemon.PokemonInfo.Height, StringFormat='{0:0′} 0&quot;'}"/>
+                    </Grid>
+
+                    <Grid Grid.Row="3"
+                          ColumnDefinitions="auto,auto"
+                          ColumnSpacing="8">
+                        <Label Grid.Column="0"
+                               Text="WT."/>
+
+                        <Label Grid.Column="1"
+                               Text="{Binding Pokemon.PokemonInfo.Weight, StringFormat='{0:0.0} lbs.'}"/>
+                    </Grid>
+
+                </Grid>
+
+            </Grid>
+
+            <Border Grid.Row="1"
+                    StrokeShape="RoundRectangle 0,0,20,20"
+                    Background="{DynamicResource SecondaryBrush}">
+
+                <Label VerticalOptions="Center"
+                       Padding="12" 
+                       Text="{Binding Pokemon.PokemonSpecies.FormattedFlavorText}"/>
+
+            </Border>
+
+        </Grid>
+
+    </Border>
+    
+</view:BaseContentPage>

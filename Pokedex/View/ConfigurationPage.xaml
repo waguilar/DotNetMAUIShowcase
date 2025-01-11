@@ -9,6 +9,11 @@
 
     <StackLayout Padding="20"
                  Spacing="12">
+        <Label Text="Languages:"/>
+        <Picker ItemsSource="{Binding Languages}"
+                ItemDisplayBinding="{Binding Name}"
+                SelectedItem="{Binding SelectedLanguage}"/>
+
         <Label Text="Themes:"/>
         <Button WidthRequest="200" Text="Charmander Theme" Command="{Binding ChangeThemeCommand}" CommandParameter="Charmander"/>
         <Button WidthRequest="200" Text="Squirtle Theme" Command="{Binding ChangeThemeCommand}" CommandParameter="Squirtle"/>

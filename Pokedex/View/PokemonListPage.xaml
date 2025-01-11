@@ -8,6 +8,7 @@
                       xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
                       x:DataType="viewModel:PokemonListViewModel"
                       x:Class="Pokedex.View.PokemonListPage"
+                      x:Name="ThisPage"
                       Title="PokemonList">
 
     <Grid RowDefinitions="auto,*"
@@ -22,13 +23,16 @@
                 Background="{DynamicResource SecondaryBrush}">
 
             <Border.Behaviors>
-                <toolkit:TouchBehavior DefaultAnimationDuration="75"
-                                       DefaultAnimationEasing="{x:Static Easing.CubicInOut}"
-                                       PressedOpacity="0.9"
-                                       PressedScale="0.98" />
+                <toolkit:TouchBehavior DefaultAnimationDuration="75"  
+                                       DefaultAnimationEasing="{x:Static Easing.CubicInOut}"  
+                                       PressedOpacity="0.9"  
+                                       PressedScale="0.98"
+                                       Command="{Binding Source={x:Reference ThisPage}, Path=BindingContext.GoToDetailCommand}"/>
             </Border.Behaviors>
 
-            <ffimageloading:CachedImageView Source="{Binding Pokemon.PokemonInfo.Sprite}"
+            <ffimageloading:CachedImageView WidthRequest="175"
+                                            HeightRequest="175"
+                                            Source="{Binding Pokemon.PokemonInfo.Sprite}"
                                             StrokeThickness="0"
                                             FadeAnimationEnabled="False"/>
         </Border>

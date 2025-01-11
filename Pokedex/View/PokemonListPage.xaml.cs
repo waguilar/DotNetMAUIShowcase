@@ -5,11 +5,11 @@ namespace Pokedex.View;
 public partial class PokemonListPage
 {
     PokemonListViewModel vm => BindingContext as PokemonListViewModel;
-    public PokemonListPage(PokemonListViewModel viewModel)
+    public PokemonListPage()
     {
         InitializeComponent();
 
-        BindingContext = viewModel;
+        BindingContext = DependencyService.Resolve<PokemonListViewModel>();
         vm.SetNavigation(Navigation);
     }
 

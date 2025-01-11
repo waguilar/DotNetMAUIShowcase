@@ -8,4 +8,5 @@ namespace Pokedex.Service.Models;
 public class PokemonModel
 {
     public PokemonInfoModel PokemonInfo { get; set; }
+    public PokemonSpeciesModel PokemonSpecies { get; set; }
 }

@@ -37,9 +37,14 @@ public class PokemonService
     public async Task<PokemonModel> GetPokemonById(int id, CancellationToken cancellationToken)
     {
         var pokemonDto = await pokemonApiClient.GetPokemonById(id, cancellationToken);
+
+        var pokemonSpeciesDto = await pokemonApiClient.GetPokemonSpeciesById(id, cancellationToken);
+        
+
         var pokemonModel = new PokemonModel()
         {
-            PokemonInfo = pokemonDto.ToPokemonInfoModel()
+            PokemonInfo = pokemonDto.ToPokemonInfoModel(),
+            PokemonSpecies = pokemonSpeciesDto.ToPokemonSpeciesModel()
         };
         return pokemonModel;
     }
