@@ -173,8 +173,17 @@ namespace Pokedex
             var view = sender as Microsoft.Maui.Controls.View;
             var shellItem = view.BindingContext as BaseShellItem;
 
-            GoToAsync($"///{shellItem.Route}");
-            CloseMenu();
+            if (shellItem.Route == "AboutMePage")
+            {
+                var gravatarUrl = "https://gravatar.com/walteraguilar1988";
+                Launcher.OpenAsync(new Uri(gravatarUrl));
+                CloseMenu();
+            }
+            else
+            {
+                GoToAsync($"///{shellItem.Route}");
+                CloseMenu();
+            }
         }
 
         private void PageContainerSizeChanged(object sender, EventArgs e)

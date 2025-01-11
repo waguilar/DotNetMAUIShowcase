@@ -35,7 +35,6 @@
 
     <ShellContent Title="About Me"
                   Icon="{x:Static f:FluentUI.person_info_20_regular}"
-                  ContentTemplate="{DataTemplate view:ConfigurationPage}"
                   Route="AboutMePage"/>
 
     <ShellContent Title="Settings"
