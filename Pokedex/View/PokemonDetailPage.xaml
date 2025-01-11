@@ -86,6 +86,7 @@
 
                 <Label VerticalOptions="Center"
                        Padding="12" 
+                       TextColor="{DynamicResource Gray600}"
                        Text="{Binding Pokemon.PokemonSpecies.FormattedFlavorText}"/>
 
             </Border>

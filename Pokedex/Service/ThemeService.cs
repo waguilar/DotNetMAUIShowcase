@@ -17,6 +17,7 @@ public class ThemeService
         if (colorSet != null)
         {
             Application.Current.Resources.MergedDictionaries.Clear();
+            Application.Current.Resources.MergedDictionaries.Add(new ColorsGeneric());
             Application.Current.Resources.MergedDictionaries.Add(colorSet);
             Application.Current.Resources.MergedDictionaries.Add(new Styles());
         }

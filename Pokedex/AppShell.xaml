@@ -1,18 +1,138 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Shell
-    x:Class="Pokedex.AppShell"
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:view="clr-namespace:Pokedex.View"
-    Shell.FlyoutBehavior="Flyout"
-    Title="Pokedex">
+<simpleShell:SimpleShell
+     x:Class="Pokedex.AppShell"
+     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+     xmlns:view="clr-namespace:Pokedex.View"
+     xmlns:simpleShell="clr-namespace:SimpleToolkit.SimpleShell;assembly=SimpleToolkit.SimpleShell"
+     xmlns:simpleCore="clr-namespace:SimpleToolkit.Core;assembly=SimpleToolkit.Core"
+     xmlns:controls="clr-namespace:Pokedex.Controls"
+     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+     xmlns:f="clr-namespace:Fonts"
+     x:Name="thisShell"
+     Background="{DynamicResource SecondaryBrush}">
 
-    <ShellContent
-        Title="Pokedex"
-        ContentTemplate="{DataTemplate view:PokemonListPage}"/>
+    <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="SimplePageTypeStates">
+            <VisualState x:Name="SimplePageTypeState.RegisteredPage">
+                <VisualState.Setters>
+                    <Setter TargetName="appBar" Property="controls:AppBar.State" Value="Back"/>
+                </VisualState.Setters>
+            </VisualState>
+            <VisualState x:Name="SimplePageTypeState.RootPage">
+                <VisualState.Setters>
+                    <Setter TargetName="appBar" Property="controls:AppBar.State" Value="Root"/>
+                </VisualState.Setters>
+            </VisualState>
+        </VisualStateGroup>
+    </VisualStateManager.VisualStateGroups>
 
-    <ShellContent
-        Title="Configuration"
-        ContentTemplate="{DataTemplate view:ConfigurationPage}"/>
 
-</Shell>
+    <ShellContent Title="Pokedex"
+                  Icon="{x:Static f:FluentUI.apps_list_20_regular}"
+                  ContentTemplate="{DataTemplate view:PokemonListPage}"
+                  Route="PokemonListPage"/>
+
+    <ShellContent Title="About Me"
+                  Icon="{x:Static f:FluentUI.person_info_20_regular}"
+                  ContentTemplate="{DataTemplate view:ConfigurationPage}"
+                  Route="AboutMePage"/>
+
+    <ShellContent Title="Settings"
+                  Icon="{x:Static f:FluentUI.settings_20_regular}"
+                  ContentTemplate="{DataTemplate view:ConfigurationPage}"
+                  Route="SettingsPage"/>
+    
+
+    <simpleShell:SimpleShell.Content>
+        <Grid CompressedLayout.IsHeadless="True">
+
+            <Grid x:Name="menuGrid"
+                  WidthRequest="200"
+                  HorizontalOptions="Start"
+                  VerticalOptions="Center"
+                  Padding="24, 0"
+                  Margin="0, 0, 0, 2"
+                  RowDefinitions="36, 120, *">
+
+                <simpleCore:ContentButton StyleClass="ContainerButton"
+                                          WidthRequest="36"
+                                          HeightRequest="36"
+                                          HorizontalOptions="Start" VerticalOptions="Start"
+                                          Clicked="CloseMenuButtonClicked"
+                                          StrokeThickness="0">
+                    <Image>
+                        <Image.Source>
+                            <FontImageSource Glyph="{x:Static f:FluentUI.dismiss_20_regular}"
+                                             FontFamily="{x:Static f:FluentUI.FontFamily}"
+                                             Color="{DynamicResource DarkOnLightBackground}"
+                                             Size="{StaticResource size240}"/>
+                        </Image.Source>
+                    </Image>
+                </simpleCore:ContentButton>
+
+                <VerticalStackLayout Grid.Row="1"
+                                     VerticalOptions="End" Spacing="0"
+                                     Margin="0, 0, 0, 12"
+                                     CompressedLayout.IsHeadless="True">
+                    <Label Text="Hello," FontSize="Large" FontFamily="BoldFont" TextColor="{DynamicResource DarkOnLightBackground}" />
+                    <Label Text="Trainer!" FontSize="Large" FontFamily="BoldFont" TextColor="{DynamicResource DarkOnLightBackground}" />
+                </VerticalStackLayout>
+
+                <ScrollView Grid.Row="2"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="Fill">
+                    <StackLayout x:Name="itemsStack"
+                                 Spacing="4"
+                                 VerticalOptions="End" HorizontalOptions="Fill"
+                                 BindableLayout.ItemsSource="{Binding Source={x:Reference thisShell}, Path=ShellContents}"
+                                 CompressedLayout.IsHeadless="True">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate x:DataType="BaseShellItem">
+                                <simpleCore:ContentButton Clicked="MenuItemButtonClicked"
+                                                          StrokeThickness="0">
+                                    <HorizontalStackLayout Spacing="15" Padding="0,10">
+                                        <Image HorizontalOptions="Start" VerticalOptions="Center"
+                                               HeightRequest="20" WidthRequest="20">
+                                            <Image.Source>
+                                                <FontImageSource Glyph="{Binding Icon}"
+                                                                 FontFamily="{x:Static f:FluentUI.FontFamily}"
+                                                                 Color="{DynamicResource DarkOnLightBackground}"
+                                                                 Size="{StaticResource size240}"/>
+                                            </Image.Source>
+                                        </Image>
+                                        <Label Text="{Binding Title}" 
+                                               TextColor="{StaticResource DarkOnLightBackground}" 
+                                               HorizontalOptions="Start" 
+                                               VerticalOptions="Center"
+                                               FontSize="Small" 
+                                               FontFamily="BoldFont" 
+                                               Margin="0,1,0,0"/>
+                                    </HorizontalStackLayout>
+                                </simpleCore:ContentButton>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </ScrollView>
+            </Grid>
+
+            <Grid x:Name="pageContainer">
+                <simpleShell:SimpleNavigationHost/>
+                <controls:AppBar x:Name="appBar"
+                                 VerticalOptions="Start" 
+                                 HorizontalOptions="Fill"
+                                 State="Root"
+                                 MenuClicked="AppBarMenuClicked" 
+                                 BackClicked="AppBarBackClicked"/>
+                <Rectangle x:Name="pageOverlay"
+                           InputTransparent="True"
+                           Fill="Transparent">
+                    <Rectangle.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="CloseMenuButtonClicked"/>
+                    </Rectangle.GestureRecognizers>
+                </Rectangle>
+            </Grid>
+        </Grid>
+    </simpleShell:SimpleShell.Content>
+
+</simpleShell:SimpleShell>

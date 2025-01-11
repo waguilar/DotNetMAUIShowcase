@@ -9,7 +9,7 @@
                       x:DataType="viewModel:PokemonListViewModel"
                       x:Class="Pokedex.View.PokemonListPage"
                       x:Name="ThisPage"
-                      Title="PokemonList">
+                      Title="Pokemon List!">
 
     <Grid RowDefinitions="auto,*"
           RowSpacing="10">

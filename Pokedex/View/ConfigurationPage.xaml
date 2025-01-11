@@ -4,16 +4,19 @@
                       xmlns:view="clr-namespace:Pokedex.View"
                       xmlns:viewModel="clr-namespace:Pokedex.ViewModel"
                       x:Class="Pokedex.View.ConfigurationPage"
-                      x:DataType="viewModel:ConfigurationViewModel"
-                      Title="ConfigurationPage">
+                      x:DataType="viewModel:ConfigurationViewModel">
 
-    <StackLayout Padding="20"
+    <StackLayout Padding="20,0"
                  Spacing="12">
         <Label Text="Languages:"/>
-        <Picker ItemsSource="{Binding Languages}"
-                ItemDisplayBinding="{Binding Name}"
-                SelectedItem="{Binding SelectedLanguage}"/>
-
+        <Border StrokeThickness="2"
+                Padding="8"
+                StrokeShape="RoundRectangle 20"
+                Stroke="{DynamicResource PrimaryBrush}">
+            <Picker ItemsSource="{Binding Languages}"
+                    ItemDisplayBinding="{Binding Name}"
+                    SelectedItem="{Binding SelectedLanguage}"/>
+        </Border>
         <Label Text="Themes:"/>
         <Button WidthRequest="200" Text="Charmander Theme" Command="{Binding ChangeThemeCommand}" CommandParameter="Charmander"/>
         <Button WidthRequest="200" Text="Squirtle Theme" Command="{Binding ChangeThemeCommand}" CommandParameter="Squirtle"/>

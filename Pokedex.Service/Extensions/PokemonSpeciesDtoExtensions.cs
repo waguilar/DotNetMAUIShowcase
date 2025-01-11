@@ -18,7 +18,7 @@ public static class PokemonSpeciesDtoExtensions
                 .ToDictionary(k => k.Language.Name, v => v.GenusValue),
 
             FlavorTextDictionary = dto.FlavorTextEntries
-                .Where(w => w.Version.Name == "sword")
+                .Where(w => w.Version.Name == "lets-go-eevee")
                 .ToDictionary(k => k.Language.Name, v => v.FlavorTextValue)
 
         };
