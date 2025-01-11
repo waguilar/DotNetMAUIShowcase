@@ -20,6 +20,7 @@ namespace Pokedex
                 .UseSimpleToolkit()
                 .UseSimpleShell()
                 .DisplayContentBehindBars()
+                .UseSimpleShell(usePlatformTransitions: false)
 #if ANDROID
                 .SetDefaultStatusBarAppearance(Colors.Transparent, true)
                 .SetDefaultNavigationBarAppearance(Colors.Transparent, false)
