@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Pokedex.Service;
 using Pokedex.Service.Models;
 using Pokedex.Service.Services;
 using Pokedex.View;
@@ -10,6 +11,7 @@ namespace Pokedex.ViewModel;
 public partial class PokemonListViewModel : BaseViewModel
 {
     private readonly PokemonService _pokemonService;
+    private readonly UserDialogService _userDialogService;
 
     [ObservableProperty] private PokemonModel pokemon;
     [ObservableProperty] private ObservableCollection<PokedexItemModel> pokemonList;
@@ -17,14 +19,17 @@ public partial class PokemonListViewModel : BaseViewModel
 
 
     public PokemonListViewModel() : this(DependencyService.Resolve<IConnectivity>(),
-        DependencyService.Resolve<PokemonService>())
+        DependencyService.Resolve<PokemonService>(),
+        DependencyService.Resolve<UserDialogService>())
     {
     }
 
     public PokemonListViewModel(IConnectivity connectivity,
-        PokemonService pokemonService) : base(connectivity)
+        PokemonService pokemonService,
+        UserDialogService userDialogService) : base(connectivity)
     {
         _pokemonService = pokemonService;
+        _userDialogService = userDialogService;
     }
 
 
@@ -69,6 +74,11 @@ public partial class PokemonListViewModel : BaseViewModel
     [RelayCommand]
     private async Task GoToDetailAsync()
     {
+        if (SelectedItem is null)
+        {
+            await _userDialogService.ShowToast("Select a Pokémon first!", CancellationToken.None);
+            return;
+        }
         await Navigation.PushAsync(new PokemonDetailPage(Pokemon));
     }
 }

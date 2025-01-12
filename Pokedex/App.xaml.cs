@@ -25,6 +25,7 @@ namespace Pokedex
             DependencyService.Register<PokemonService>();
             var themeService = new ThemeService();
             DependencyService.RegisterSingleton(themeService);
+            DependencyService.Register<UserDialogService>();
 
             // Register ViewModels
             DependencyService.Register<PokemonListViewModel>();
