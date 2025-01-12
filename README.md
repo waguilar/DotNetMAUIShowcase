@@ -1,6 +1,6 @@
 # Pokémon Info App
 
-This .NET MAUI application connects to the [PokéAPI](https://pokeapi.co/) to fetch and display information about Pokémon. The app is designed with several key features and follows best practices in modern app development.
+This .NET MAUI application connects to the [PokéAPI](https://pokeapi.co/) to fetch and display information about Pokémon. The app has several key features and follows best practices in modern app development.
 
 ## Features
 
@@ -12,6 +12,8 @@ This .NET MAUI application connects to the [PokéAPI](https://pokeapi.co/) to fe
 - **Custom Shell Implementation**: The app uses a custom shell implementation to animate the flyout menu and page transitions.
 - **Dynamic Themes**: The app supports dynamic theme changes, allowing users to switch between light and dark themes on the fly.
 - **WebView Integration**: The app includes a WebView to display your Gravatar.
+
+[AppShowcase.webm](https://github.com/user-attachments/assets/b35be99f-80fe-4d85-a63b-8dce5338a5f9)
 
 ## TODO
 
